@@ -1,8 +1,8 @@
 import React from "react"
 
-export default () => (
+export default ({ customer }) => (
     <section className="customer">
-        <h3>Hannah Hall</h3>
-        <address>100 Infinity Way</address>
+        <h3>{customer.name}</h3>
+        <address>{customer.address}</address>
     </section>
 )

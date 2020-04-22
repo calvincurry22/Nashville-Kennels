@@ -38,14 +38,13 @@ export default () => (
             <LocationList />
         </LocationProvider>
 
-        <h2>Employees</h2>
         
         <LocationProvider>
             <EmployeeProvider>
                 <EmployeeList />
             </EmployeeProvider>
         </LocationProvider>
-        
+ 
         <h2>Customers</h2>
         <CustomerProvider>
             <CustomerList />

@@ -2,7 +2,6 @@ import React from "react"
 import { AnimalProvider } from "./animal/AnimalProvider"
 import AnimalList from "./animal/AnimalList"
 import "./animal/Animal.css"
-import Customer from "./customer/Customer"
 import { CustomerProvider } from "./customer/CustomerProvider"
 import CustomerList from "./customer/CustomerList"
 import "./customer/Customer.css"
@@ -40,9 +39,13 @@ export default () => (
         </LocationProvider>
 
         <h2>Employees</h2>
-        <EmployeeProvider>
-            <EmployeeList />
-        </EmployeeProvider>
+        
+        <LocationProvider>
+            <EmployeeProvider>
+                <EmployeeList />
+            </EmployeeProvider>
+        </LocationProvider>
+        
         <h2>Customers</h2>
         <CustomerProvider>
             <CustomerList />

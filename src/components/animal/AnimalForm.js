@@ -1,58 +1,60 @@
 import React, { useContext, useRef } from "react"
-import { EmployeeContext } from "./EmployeeProvider"
+import { AnimalContext } from "./AnimalProvider"
 import { LocationContext } from "../location/LocationProvider"
-import "./Employee.css"
+import "./Animal.css"
 
 export default props => {
-    const { addEmployees } = useContext(EmployeeContext)
+    const { addAnimal } = useContext(AnimalContext)
     const { locations } = useContext(LocationContext)
     const name = useRef()
+    const breed = useRef()
     const location = useRef()
-    const address = useRef()
+    
 
-    const constructNewEmployee = () => {
+    const constructNewAnimal = () => {
         const locationId = parseInt(location.current.value)
 
         if (locationId === 0) {
             window.alert("Please select a location")
         } else {
-            addEmployees({
+            addAnimal({
                 name: name.current.value,
+                breed: breed.current.value,
                 locationId: locationId,
-                address: address.current.value
+                customerId: parseInt(localStorage.getItem("kennel_customer"))
             }) 
             .then(props.toggler)
         }
     }
 
     return (
-        <form className="employeeForm">
-            <h2 className="employeeForm__title">New Employee</h2>
+        <form className="animalForm">
+            <h2 className="animalForm__title">Make Appointment</h2>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="employeeName">Employee name: </label>
+                    <label htmlFor="AnimalName">Animal name: </label>
                     <input
                         type="text"
-                        id="employeeName"
+                        id="animalName"
                         ref={name}
                         required
                         autoFocus
                         className="form-control"
-                        placeholder="Employee name"
+                        placeholder="Animal name"
                     />
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="employeeAddress">Address: </label>
+                    <label htmlFor="AnimalBreed">Animal breed: </label>
                     <input
                         type="text"
-                        id="employeeAddress"
-                        ref={address}
+                        id="animalBreed"
+                        ref={breed}
                         required
                         autoFocus
                         className="form-control"
-                        placeholder="Street address"
+                        placeholder="Animal breed"
                     />
                 </div>
             </fieldset>
@@ -63,7 +65,7 @@ export default props => {
                         defaultValue=""
                         name="location"
                         ref={location}
-                        id="employeeLocation"
+                        id="animalLocation"
                         className="form-control"
                     >
                         <option value="0">Select a location</option>
@@ -79,11 +81,11 @@ export default props => {
                 onClick={
                     evt => {
                         evt.preventDefault() // Prevent browser from submitting the form
-                        constructNewEmployee()
+                        constructNewAnimal()
                     }
                 }
                 className="btn btn-primary">
-                Save Employee
+                Save Animal
             </button>
         </form>
     )
